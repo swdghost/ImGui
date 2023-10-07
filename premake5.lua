@@ -1,7 +1,7 @@
 project "ImGui"
 	kind "StaticLib"
 	language "C++"
-    staticruntime "off"
+      staticruntime "off"
 
 	targetdir ("bin/" ..  "/%{prj.name}")
 	objdir ("bin-int/" ..  "/%{prj.name}")
@@ -21,6 +21,16 @@ project "ImGui"
 		"imgui_demo.cpp"
 	}
 
+	includedirs
+	{
+		"../PFEngine/thirdparty/glfw/include"
+	}
+
+    defines
+	{
+		"IMGUI_API=__declspec(dllexport)"
+	}
+
 	filter "system:windows"
 		systemversion "latest"
 		cppdialect "C++17"
@@ -38,7 +48,7 @@ project "ImGui"
 		runtime "Release"
 		optimize "on"
 
-    filter "configurations:Dist"
+    	filter "configurations:Dist"
 		runtime "Release"
 		optimize "on"
-        symbols "off"
+        	symbols "off"
